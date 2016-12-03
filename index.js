@@ -35,3 +35,5 @@ vConsolePlugin.prototype.apply = compiler => {
         }
     });
 };
+
+module.exports = vConsolePlugin;
