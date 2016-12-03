@@ -13,11 +13,11 @@ function vConsolePlugin(options) {
     }, options);
 }
 
-vConsolePlugin.prototype.apply = compiler => {
+vConsolePlugin.prototype.apply = function(compiler) {
     const enable = this.options.enable;
     const pathVconsole = './node_modules/vconsole/dist/vconsole.min.js';
 
-    compiler.plugin('entry-option', () => {
+    compiler.plugin('entry-option', function() {
         if (enable) {
             if (Object.prototype.toString.call(this.options.entry) === '[object Array]') {
                 this.options.entry.unshift(pathVconsole);
@@ -35,3 +35,5 @@ vConsolePlugin.prototype.apply = compiler => {
         }
     });
 };
+
+module.exports = vConsolePlugin;
