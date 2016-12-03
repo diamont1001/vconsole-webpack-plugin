@@ -25,7 +25,7 @@ module.exports = {
 }
 ```
 
-注意，`vConsole` 作为一个调试模块，注定了需要在发布前把它去掉，为了避免人为操作失误而影响线上功能，这里建议配置如下：
+`vConsole` 作为一个调试模块，注定了需要在发布前把它去掉，为了避免人为操作失误而影响线上功能，这里建议配置如下：
 
 `package.json` 文件配置：
 
@@ -39,6 +39,9 @@ scripts: {
 `webpack.conf.js` 配置：
 
 ```js
+// 引入插件
+var vConsolePlugin = require('vconsole-webpack-plugin'); 
+
 // 接收运行参数
 const argv = require('yargs')
 	.describe('debug', 'debug 环境') // use 'webpack --debug'
@@ -48,7 +51,7 @@ module.exports = {
     ...
 
     plugins: [
-        new require("vconsole-webpack-plugin")({enable: !!argv.debug}),
+        new vConsolePlugin({enable: !!argv.debug}),
         ...
     ]
     ...
