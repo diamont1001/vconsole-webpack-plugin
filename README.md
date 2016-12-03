@@ -1,5 +1,5 @@
 # vconsole-webpack-plugin
-webpack plugin for vConsole
+webpack plugin for [vConsole](https://github.com/WechatFE/vConsole)
 
 ## 安装
 
