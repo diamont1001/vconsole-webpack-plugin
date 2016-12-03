@@ -31,14 +31,14 @@ module.exports = {
 
 ```json
 scripts: {
-	dev: webpack -w --debug,
-	prod: webpack -p
+	"dev": "webpack -w --debug",
+	"prod": "webpack -p"
 }
 ```
 
 `webpack.conf.js` 配置：
 
-```json
+```js
 // 接收运行参数
 const argv = require('yargs')
 	.describe('debug', 'debug 环境') // use 'webpack --debug'
