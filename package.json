@@ -1,0 +1,32 @@
+{
+  "name": "vconsole-webpack-plugin",
+  "version": "1.0.0",
+  "description": "webpack plugin for vConsole",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diamont1001/vconsole-webpack-plugin.git"
+  },
+  "keywords": [
+    "webpack",
+    "plugin",
+    "webpack-plugin",
+    "vConsole",
+    "vconsole"
+  ],
+  "author": "diamont1001",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/diamont1001/vconsole-webpack-plugin/issues"
+  },
+  "homepage": "https://github.com/diamont1001/vconsole-webpack-plugin#readme",
+  "dependencies": {
+    "eslint": "^3.3.0",
+    "eslint-config-jr": "^1.0.0",
+    "vconsole": "^2.5.1"
+  }
+}
