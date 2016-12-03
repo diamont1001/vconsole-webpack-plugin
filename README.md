@@ -14,12 +14,15 @@ npm install vconsole-webpack-plugin --save-dev
 `webpack.conf.js` 文件配置里增加以下插件配置即可
 
 ```js
+// 引入插件
+var vConsolePlugin = require('vconsole-webpack-plugin'); 
+
 module.exports = {
     ...
 
     plugins: [
-        new require("vconsole-webpack-plugin")({
-        	enable: true // 发布代码前记得改回 false
+        new vConsolePlugin({
+            enable: true // 发布代码前记得改回 false
         }),
         ...
     ]
@@ -33,8 +36,8 @@ module.exports = {
 
 ```json
 scripts: {
-	"dev": "webpack -w --debug",
-	"prod": "webpack -p"
+    "dev": "webpack -w --debug",
+    "prod": "webpack -p"
 }
 ```
 
@@ -46,8 +49,8 @@ var vConsolePlugin = require('vconsole-webpack-plugin');
 
 // 接收运行参数
 const argv = require('yargs')
-	.describe('debug', 'debug 环境') // use 'webpack --debug'
-	.argv;
+    .describe('debug', 'debug 环境') // use 'webpack --debug'
+    .argv;
 
 module.exports = {
     ...

@@ -1,6 +1,6 @@
 {
   "name": "vconsole-webpack-plugin",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "webpack plugin for vConsole",
   "main": "index.js",
   "scripts": {
