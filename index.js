@@ -7,6 +7,8 @@
 
 'use strict';
 
+const path = require('path');
+
 function vConsolePlugin(options) {
     this.options = Object.assign({
         enable: false // 插件开关，默认“关”
@@ -15,7 +17,12 @@ function vConsolePlugin(options) {
 
 vConsolePlugin.prototype.apply = function(compiler) {
     const enable = this.options.enable;
-    const pathVconsole = './node_modules/vconsole/dist/vconsole.min.js';
+    // support resolveLoader.root
+    let _root = './node_modules/';
+    if (compiler.options.resolveLoader && compiler.options.resolveLoader.root) {
+        _root = compiler.options.resolveLoader.root;
+    }
+    const pathVconsole = path.join(_root, '/vconsole/dist/vconsole.min.js');
 
     compiler.plugin('entry-option', function() {
         if (enable) {
