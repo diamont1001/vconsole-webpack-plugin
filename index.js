@@ -17,13 +17,8 @@ function vConsolePlugin(options) {
 
 vConsolePlugin.prototype.apply = function(compiler) {
     const enable = this.options.enable;
-    let _root = path.join(compiler.context, '/node_modules'); // base to $project/node_modules
-
-    // support resolveLoader.root
-    if (compiler.options.resolveLoader && compiler.options.resolveLoader.root) {
-        _root = compiler.options.resolveLoader.root;
-    }
-
+    const modulePaths = module.paths;
+    let _root = modulePaths.find(path => fs.existsSync(path));
     const pathVconsole = path.join(_root, '/vconsole/dist/vconsole.min.js');
 
     compiler.plugin('entry-option', function() {
