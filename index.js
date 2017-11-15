@@ -8,6 +8,7 @@
 'use strict';
 
 const path = require('path');
+const fs = require('fs');
 
 function vConsolePlugin(options) {
     this.options = Object.assign({
@@ -17,8 +18,7 @@ function vConsolePlugin(options) {
 
 vConsolePlugin.prototype.apply = function(compiler) {
     const enable = this.options.enable;
-    const modulePaths = module.paths;
-    let _root = modulePaths.find(path => fs.existsSync(path));
+    const _root = module.paths.find(path => fs.existsSync(path));
     const pathVconsole = path.join(_root, '/vconsole/dist/vconsole.min.js');
 
     compiler.plugin('entry-option', function() {
