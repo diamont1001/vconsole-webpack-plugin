@@ -1,7 +1,8 @@
 // webpack.config.js
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin'); // Html文件处理
-var vConsolePlugin = require('vconsole-webpack-plugin'); 
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin'); // Html文件处理
+// const vConsolePlugin = require('vconsole-webpack-plugin'); 
+const vConsolePlugin = require('../../index.js'); 
 
 // 接收运行参数
 const argv = require('yargs')
