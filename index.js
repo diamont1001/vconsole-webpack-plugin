@@ -34,7 +34,7 @@ vConsolePlugin.prototype.apply = function(compiler) {
                 }
             } else if (typeof this.options.entry === 'object') {
                 for (let key in this.options.entry) {
-                    if (that.options.filter.indexOf(key) === -1 ) {
+                    if (that.options.filter.indexOf(key) === -1) {
                         if (Object.prototype.toString.call(this.options.entry[key]) === '[object Array]') {
                             this.options.entry[key].unshift(pathVconsole);
                         } else if (typeof this.options.entry[key] === 'string') {
@@ -48,15 +48,15 @@ vConsolePlugin.prototype.apply = function(compiler) {
         }
     });
 };
-vConsolePlugin.prototype.find = function(arr){
+vConsolePlugin.prototype.find = function(arr) {
     for (var i = 0; i < arr.length; i++) {
         for (var j = 0; j < this.options.filter.length; j++) {
             if (this.options.filter[j] === arr[i]) {
-                return true
+                return true;
             }
         }
     }
-    return false
+    return false;
 };
 
 module.exports = vConsolePlugin;
