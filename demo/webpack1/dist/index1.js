@@ -45,7 +45,9 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	__webpack_require__(1);
-	module.exports = __webpack_require__(3);
+	__webpack_require__(3);
+	__webpack_require__(4);
+	module.exports = __webpack_require__(5);
 
 
 /***/ }),
@@ -90,6 +92,22 @@
 	// var VConsole = require('vconsole');
 	// new VConsole();
 	//
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	console.log('a.js');
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	console.log('b.js');
 
 /***/ })
 /******/ ]);

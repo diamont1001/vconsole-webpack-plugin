@@ -11,7 +11,7 @@ const argv = require('yargs')
 
 module.exports = {
     entry: {
-        index: './src/index.js'
+        index1: ['./src/index.js', './src/a.js', './src/b.js']
     },
     output: {
         path: './dist', // This is where images & js will go
@@ -31,7 +31,7 @@ module.exports = {
          * excludeChunks - 排除指定的文件（打包后输出的JS/CSS），比如：excludeChunks: ['dev-helper']
          * hash
          */
-        new HtmlWebpackPlugin({filename: 'index.html', template: 'src/index.html', chunks: ['index'], hash: true}),
+        new HtmlWebpackPlugin({filename: 'index1.html', template: 'src/index.html', chunks: ['index1'], hash: true}),
         ],
 
     module: {

@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "deps": "npm install",
-    "dev": "webpack -w --debug",
+    "dev": "webpack --debug",
+    "dev1": "webpack --debug --config=webpack.config.1.js",
+    "dev2": "webpack --debug --config=webpack.config.2.js",
+    "dev3": "webpack --debug --config=webpack.config.3.js",
     "prod": "webpack -p",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,11 +20,13 @@
     "babel-loader": "^7.1.2",
     "css-loader": "^0.28.7",
     "extract-text-webpack-plugin": "^3.0.2",
+    "html-webpack-include-assets-plugin": "^1.0.4",
     "html-webpack-plugin": "^2.30.1",
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
     "style-loader": "^0.19.0",
     "url-loader": "^0.6.2",
+    "vconsole-webpack-plugin": "file:../..",
     "webpack": "^3.8.1"
   }
 }

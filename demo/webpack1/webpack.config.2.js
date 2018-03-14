@@ -1,6 +1,7 @@
 // webpack.config.js
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // Html文件处理
+const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
 // const vConsolePlugin = require('vconsole-webpack-plugin'); 
 const vConsolePlugin = require('../../index.js'); 
 
@@ -10,13 +11,11 @@ const argv = require('yargs')
     .argv;
 
 module.exports = {
-    entry: {
-        index: './src/index.js'
-    },
+    entry: './src/index.js',
     output: {
         path: './dist', // This is where images & js will go
         publicPath: '', // This is used to generate URLs to e.g. images
-        filename: '[name].js',
+        filename: 'index2.js',
         chunkFilename: "[id].chunk.js?[hash:8]"
     },
     plugins: [
@@ -31,7 +30,11 @@ module.exports = {
          * excludeChunks - 排除指定的文件（打包后输出的JS/CSS），比如：excludeChunks: ['dev-helper']
          * hash
          */
-        new HtmlWebpackPlugin({filename: 'index.html', template: 'src/index.html', chunks: ['index'], hash: true}),
+        new HtmlWebpackPlugin({filename: 'index2.html', template: 'src/index.html', chunks: ['index2'], hash: true}),
+        new HtmlWebpackIncludeAssetsPlugin({
+            assets: ['index2.js'],
+            append: true
+        }),
         ],
 
     module: {

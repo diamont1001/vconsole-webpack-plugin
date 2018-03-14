@@ -6,6 +6,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin"); // 单独打包CSS
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // Html文件处理
+const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
 const vConsolePlugin = require('../../index.js'); 
 
 
@@ -15,13 +16,11 @@ const argv = require('yargs')
     .argv;
     
 module.exports = {
-  entry: {
-    index: './src/index.js'
-  },
+  entry: ['./src/index.js', './src/a.js', './src/b.js'],
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '', // This is used to generate URLs to e.g. images
-    filename: '[name].js',
+    filename: 'index3.js',
     chunkFilename: "[id].chunk.js?[hash:8]"
   },
   plugins: [
@@ -45,11 +44,15 @@ module.exports = {
      * hash
      */
     new HtmlWebpackPlugin({
-      filename: 'index.html',
+      filename: 'index3.html',
       template: 'src/index.html',
-      chunks: ['index'],
+      chunks: ['index3'],
       hash: true
-    })
+    }),
+    new HtmlWebpackIncludeAssetsPlugin({
+        assets: ['index3.js'],
+        append: true
+    }),
   ],
 
   module: {

@@ -16,7 +16,7 @@ const argv = require('yargs')
     
 module.exports = {
   entry: {
-    index: './src/index.js'
+    index1: ['./src/index.js', './src/a.js', './src/b.js']
   },
   output: {
     path: path.resolve(__dirname, './dist'),
@@ -45,9 +45,9 @@ module.exports = {
      * hash
      */
     new HtmlWebpackPlugin({
-      filename: 'index.html',
+      filename: 'index1.html',
       template: 'src/index.html',
-      chunks: ['index'],
+      chunks: ['index1'],
       hash: true
     })
   ],
