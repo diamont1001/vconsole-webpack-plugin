@@ -66,4 +66,17 @@ module.exports = {
 
 这样，在开发的时候运行 `npm run dev`，发布的时候运行 `npm run prod` 即可。
 
+`webpack-dev-server` 的配套用法：
+
+用法其实跟上面一样，只是别忘记在启动脚本的时候增加 `--debug` 即可。如下：
+
+```js
+  // package.json
+  "scripts": {
+    ...
+    "start:dev": "webpack-dev-server --debug",
+    ...
+  },
+```
+
 ## 例子参考: [webpack-demo](https://github.com/diamont1001/webpack-demo/tree/master/example1)
