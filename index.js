@@ -34,42 +34,46 @@ vConsolePlugin.prototype.apply = function(compiler) {
     });
     const that = this;
 
-    compiler.plugin('entry-option', function() {
+    compiler.plugin('entry-option', function(local, entry) {
         if (enable) {
-            if (typeof this.options.entry === 'string') {
-                if (!that.find([this.options.entry])) {
+            if (typeof entry === 'string') {
+                if (!checkFilter([entry], that.options.filter)) {
                     // TODO: entry 为 string 时，修改不了，只有 object 才可以修改
-                    this.options.entry = [pathVconsole, this.options.entry];
+                    entry = [pathVconsole, entry];
                     console.warn('[vconsole-webpack-plugin] 暂不支持 entry 为 string 类型的情况\n');
                 }
-            } else if (Object.prototype.toString.call(this.options.entry) === '[object Array]') {
-                if (!that.find(this.options.entry)) {
-                    this.options.entry.unshift(pathVconsole);
+            } else if (Object.prototype.toString.call(entry) === '[object Array]') {
+                if (!checkFilter(entry, that.options.filter)) {
+                    entry.unshift(pathVconsole);
                 }
-            } else if (typeof this.options.entry === 'object') {
-                for (let key in this.options.entry) {
+            } else if (typeof entry === 'object') {
+                for (let key in entry) {
                     if (that.options.filter.indexOf(key) < 0) {
-                        if (Object.prototype.toString.call(this.options.entry[key]) === '[object Array]') {
-                            if (!that.find(this.options.entry[key])) {
-                                this.options.entry[key].unshift(pathVconsole);
+                        if (Object.prototype.toString.call(entry[key]) === '[object Array]') {
+                            if (!checkFilter(entry[key], that.options.filter)) {
+                                entry[key].unshift(pathVconsole);
                             }
-                        } else if (typeof this.options.entry[key] === 'string') {
-                            if (!that.find([this.options.entry[key]])) {
-                                this.options.entry[key] = [pathVconsole, this.options.entry[key]];
+                        } else if (typeof entry[key] === 'string') {
+                            if (!checkFilter([entry[key]], that.options.filter)) {
+                                entry[key] = [pathVconsole, entry[key]];
                             }
                         }
                     }
                 }
             }
 
-            // console.log(this.options.entry);
+            // console.log(entry);
         }
     });
 };
-vConsolePlugin.prototype.find = function(arr) {
-    for (var i = 0; i < arr.length; i++) {
+
+function checkFilter(entries, filter) {
+    for (var i = 0; i < entries.length; i++) {
         // 去重，避免两次初始化 vconsole
-        const data = codeClean((fs.readFileSync(arr[i]) || '').toString());
+        if (!fs.existsSync(entries[i])) { // 处理 webpack-dev-server 开启的情况
+            continue;
+        }
+        const data = codeClean((fs.readFileSync(entries[i]) || '').toString());
         if (data.toLowerCase().indexOf('new vconsole(') >= 0
             || data.indexOf('new require(\'vconsole') >= 0
             || data.indexOf('new require("vconsole') >= 0
@@ -78,14 +82,14 @@ vConsolePlugin.prototype.find = function(arr) {
         }
 
         // 过滤黑名单
-        for (var j = 0; j < this.options.filter.length; j++) {
-            if (this.options.filter[j] === arr[i]) {
+        for (var j = 0; j < filter.length; j++) {
+            if (filter[j] === entries[i]) {
                 return true;
             }
         }
     }
     return false;
-};
+}
 
 // 去除注释
 function codeClean(str) {
