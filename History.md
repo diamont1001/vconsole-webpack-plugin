@@ -1,4 +1,9 @@
 
+1.4.1 / 2018-05-07
+==================
+
+  * fix: github warning "We found potential security vulnerabilities in your dependencies."
+
 1.4.0 / 2018-03-19
 ==================
 
