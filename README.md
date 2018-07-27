@@ -80,3 +80,14 @@ module.exports = {
 ```
 
 ## 例子参考: [webpack-demo](https://github.com/diamont1001/webpack-demo/tree/master/example1)
+
+## 直接使用 vconsole
+
+当然，有时候一些页面想临时添加 `vconsole` 来调试一下，可以直接使用：
+
+```htmls
+<script src="http://wechatfe.github.io/vconsole/lib/vconsole.min.js?v=3.2.0"></script>
+<script>
+	window.vConsole = new window.VConsole();
+</script>
+```
