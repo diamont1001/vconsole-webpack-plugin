@@ -1,4 +1,13 @@
 
+1.4.2 / 2018-08-20
+==================
+
+  * fix: 兼容webpack 4 (DeprecationWarning: Tapable.plugin is deprecated. Use new API on `.hooks` instead)
+  * feat: demo4 webpack-dev-server upgrade(3.1.1 -> 3.1.5)
+  * feat: html-webpack-plugin upgrade to 3.2.0
+  * feat: demo 4 webpack update to 4.16.5
+  * Update README.md
+
 1.4.1 / 2018-05-07
 ==================
 
