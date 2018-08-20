@@ -34,7 +34,7 @@ vConsolePlugin.prototype.apply = function(compiler) {
     });
     const that = this;
 
-    compiler.plugin('entry-option', function(local, entry) {
+    const pluginFunction = (local, entry) => {
         if (enable) {
             if (typeof entry === 'string') {
                 if (!checkFilter([entry], that.options.filter)) {
@@ -64,7 +64,15 @@ vConsolePlugin.prototype.apply = function(compiler) {
 
             // console.log(entry);
         }
-    });
+    }
+
+    if (compiler.hooks) {
+        // console.log('it is webpack 4');
+        compiler.hooks.entryOption.tap({ name: 'vConsolePlugin' }, pluginFunction);
+    } else {
+        // console.log('it is not webpack 4');
+        compiler.plugin('entry-option', pluginFunction);
+    }
 };
 
 function checkFilter(entries, filter) {
