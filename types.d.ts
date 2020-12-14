@@ -3,9 +3,9 @@ import { WebpackPluginInstance, Compiler } from 'webpack'
 interface VConsolePluginOptions {
   filter: any[],
   /** 插件开关，默认“关” */
-  enable: false,
+  enable: boolean,
   /** 在 PC 环境禁用 */
-  disableInPC: false,
+  disableInPC: boolean,
 }
 
 
