@@ -14,7 +14,8 @@ const fs = require('fs');
 function vConsolePlugin(options) {
     this.options = Object.assign({
         filter: [],
-        enable: false // 插件开关，默认“关”
+        enable: false, // 插件开关，默认“关”
+        disableInPC: false,
     }, options);
     if (typeof this.options.filter === 'string') {
         this.options.filter = [this.options.filter];
@@ -22,10 +23,12 @@ function vConsolePlugin(options) {
 }
 
 vConsolePlugin.prototype.apply = function(compiler) {
-    const enable = this.options.enable;
-    let pathVconsole = 'vconsole-webpack-plugin/src/vconsole.js';
+    const { enable, disableInPC } = this.options || {};
+    const loadFileName = disableInPC ? 'disable-in-pc.js' : 'vconsole.js';
+
+    let pathVconsole = `vconsole-webpack-plugin/src/${loadFileName}`;
     const _root = module.parent.paths.find(item => {
-        let tmpPathVconsole = path.join(item, 'vconsole-webpack-plugin/src/vconsole.js');
+        let tmpPathVconsole = path.join(item, `vconsole-webpack-plugin/src/${loadFileName}`);
         if (fs.existsSync(item) && fs.existsSync(tmpPathVconsole)) {
             pathVconsole = tmpPathVconsole;
             return true;
