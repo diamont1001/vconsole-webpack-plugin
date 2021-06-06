@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/diamont1001/vconsole-webpack-plugin#readme",
   "dependencies": {
-    "vconsole": "^3.3.4"
+    "vconsole": "^3.7"
   },
   "devDependencies": {
     "eslint": "^3.3.0",
