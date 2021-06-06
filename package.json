@@ -1,9 +1,10 @@
 {
   "name": "vconsole-webpack-plugin",
-  "version": "1.5.2",
+  "version": "1.6.0",
   "description": "webpack plugin for vConsole",
   "main": "index.js",
   "scripts": {
+    "changelog": "git changelog",
     "lint": "eslint index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
