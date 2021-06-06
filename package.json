@@ -1,6 +1,6 @@
 {
   "name": "vconsole-webpack-plugin",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "webpack plugin for vConsole",
   "main": "index.js",
   "scripts": {
@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/diamont1001/vconsole-webpack-plugin#readme",
   "dependencies": {
-    "vconsole": "^3.7"
+    "vconsole": "^3.6"
   },
   "devDependencies": {
     "eslint": "^3.3.0",
