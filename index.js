@@ -48,15 +48,16 @@ vConsolePlugin.prototype.apply = function(compiler) {
                 }
             } else if (typeof entry === 'object') {
                 for (let key in entry) {
-                    if (that.options.filter.indexOf(key) < 0) {
+                    if (that.options.filter.indexOf(key) < 0 && !checkFilter(entry[key], that.options.filter)) {
                         if (Object.prototype.toString.call(entry[key]) === '[object Array]') {
-                            if (!checkFilter(entry[key], that.options.filter)) {
-                                entry[key].unshift(pathVconsole);
-                            }
+                            entry[key].unshift(pathVconsole);
                         } else if (typeof entry[key] === 'string') {
-                            if (!checkFilter([entry[key]], that.options.filter)) {
-                                entry[key] = [pathVconsole, entry[key]];
-                            }
+                            entry[key] = [pathVconsole, entry[key]];
+                        } else if(Object.prototype.toString.call(entry[key]) === '[object Object]') {
+                            // 兼容webpack 5 增加import参数
+                            if(entry[key].import && Object.prototype.toString.call(entry[key].import) === '[object Array]') {
+                                entry[key].import.unshift(pathVconsole);
+                            } 
                         }
                     }
                 }
