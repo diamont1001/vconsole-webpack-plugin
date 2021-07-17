@@ -24,7 +24,7 @@ function vConsolePlugin(options) {
 vConsolePlugin.prototype.apply = function(compiler) {
     const enable = this.options.enable;
     let pathVconsole = 'vconsole-webpack-plugin/src/vconsole.js';
-    const _root = module.parent.paths.find(item => {
+    const _root = module.parent.paths.find(item => { // eslint-disable-line no-unused-vars
         let tmpPathVconsole = path.join(item, 'vconsole-webpack-plugin/src/vconsole.js');
         if (fs.existsSync(item) && fs.existsSync(tmpPathVconsole)) {
             pathVconsole = tmpPathVconsole;
@@ -57,7 +57,7 @@ vConsolePlugin.prototype.apply = function(compiler) {
                             if (!checkFilter([entry[key]], that.options.filter)) {
                                 entry[key] = [pathVconsole, entry[key]];
                             }
-                        } else if(Object.prototype.toString.call(entry[key]) === '[object Object]') {
+                        } else if (Object.prototype.toString.call(entry[key]) === '[object Object]') {
                             if (!checkFilter([entry[key]], that.options.filter)) {
                                 // 兼容webpack 5 增加import参数
                                 if (entry[key].import && Object.prototype.toString.call(entry[key].import) === '[object Array]') {
@@ -71,7 +71,7 @@ vConsolePlugin.prototype.apply = function(compiler) {
 
             // console.log(entry);
         }
-    }
+    };
 
     if (compiler.hooks) {
         // console.log('it is webpack 4');
@@ -110,8 +110,8 @@ function checkFilter(entries, filter) {
 function codeClean(str) {
     var reg = /("([^\\\"]*(\\.)?)*")|('([^\\\']*(\\.)?)*')|(\/{2,}.*?(\r|\n))|(\/\*(\n|.)*?\*\/)/g;
     // console.log(str.match(reg));
-    return str.replace(reg, function(word) { // 去除注释后的文本  
-        return /^\/{2,}/.test(word) || /^\/\*/.test(word) ? '' : word;  
+    return str.replace(reg, function(word) { // 去除注释后的文本
+        return /^\/{2,}/.test(word) || /^\/\*/.test(word) ? '' : word;
     });
 }
 
