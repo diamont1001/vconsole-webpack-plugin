@@ -48,16 +48,22 @@ vConsolePlugin.prototype.apply = function(compiler) {
                 }
             } else if (typeof entry === 'object') {
                 for (let key in entry) {
-                    if (that.options.filter.indexOf(key) < 0 && !checkFilter(entry[key], that.options.filter)) {
+                    if (that.options.filter.indexOf(key) < 0) {
                         if (Object.prototype.toString.call(entry[key]) === '[object Array]') {
-                            entry[key].unshift(pathVconsole);
+                            if (!checkFilter(entry[key], that.options.filter)) { // 记住这句不能提升到上层 if，因为有其他类型情况，导致检测文件夹时出错
+                                entry[key].unshift(pathVconsole);
+                            }
                         } else if (typeof entry[key] === 'string') {
-                            entry[key] = [pathVconsole, entry[key]];
+                            if (!checkFilter([entry[key]], that.options.filter)) {
+                                entry[key] = [pathVconsole, entry[key]];
+                            }
                         } else if(Object.prototype.toString.call(entry[key]) === '[object Object]') {
-                            // 兼容webpack 5 增加import参数
-                            if(entry[key].import && Object.prototype.toString.call(entry[key].import) === '[object Array]') {
-                                entry[key].import.unshift(pathVconsole);
-                            } 
+                            if (!checkFilter([entry[key]], that.options.filter)) {
+                                // 兼容webpack 5 增加import参数
+                                if (entry[key].import && Object.prototype.toString.call(entry[key].import) === '[object Array]') {
+                                    entry[key].import.unshift(pathVconsole);
+                                }
+                            }
                         }
                     }
                 }
