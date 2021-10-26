@@ -1,4 +1,9 @@
 
+1.7.2 / 2021-10-26
+==================
+
+  * Treat failure case of readFileSync as no vConsole found in source (#69)
+
 1.7.1 / 2021-07-17
 ==================
 

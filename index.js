@@ -89,11 +89,11 @@ function checkFilter(entries, filter) {
             continue;
         }
         
-        let data = ''
+        let data = '';
         
         try {
             data = codeClean((fs.readFileSync(entries[i]) || '').toString());
-        } catch {}
+        } catch (e) {}
         
         if (data.toLowerCase().indexOf('new vconsole(') >= 0
             || data.indexOf('new require(\'vconsole') >= 0
