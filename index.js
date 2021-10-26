@@ -88,7 +88,13 @@ function checkFilter(entries, filter) {
         if (!fs.existsSync(entries[i])) { // 处理 webpack-dev-server 开启的情况
             continue;
         }
-        const data = codeClean((fs.readFileSync(entries[i]) || '').toString());
+        
+        let data = ''
+        
+        try {
+            data = codeClean((fs.readFileSync(entries[i]) || '').toString());
+        } catch {}
+        
         if (data.toLowerCase().indexOf('new vconsole(') >= 0
             || data.indexOf('new require(\'vconsole') >= 0
             || data.indexOf('new require("vconsole') >= 0
