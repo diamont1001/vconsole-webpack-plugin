@@ -93,7 +93,10 @@ function checkFilter(entries, filter) {
             return checkFilter(fs.readdirSync(entries[i]), filter);
         }
 
-        const data = codeClean((fs.readFileSync(entries[i]) || '').toString());
+        let data = '';
+        try {
+            data = codeClean((fs.readFileSync(entries[i]) || '').toString());
+        } catch (e) {}
 
         if (data.toLowerCase().indexOf('new vconsole(') >= 0
             || data.indexOf('new require(\'vconsole') >= 0
