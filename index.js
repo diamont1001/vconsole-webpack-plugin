@@ -90,7 +90,7 @@ function checkFilter(entries, filter) {
         }
         
         if (fs.statSync(entries[i]).isDirectory()) {
-            return checkFilter(fs.readdirSync(entries[i], filter));
+            return checkFilter(fs.readdirSync(entries[i]), filter);
         }
 
         const data = codeClean((fs.readFileSync(entries[i]) || '').toString());
