@@ -6,3 +6,5 @@ project.properties.git
 .git/
 
 node_modules/
+build/
+cache/
